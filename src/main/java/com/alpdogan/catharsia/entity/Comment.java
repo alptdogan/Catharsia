@@ -1,6 +1,5 @@
 package com.alpdogan.catharsia.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,22 +14,29 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "topic")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "id")
     private int id;
 
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "user_name")
-    private String userName;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    })
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    })
+    private Topic topic;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
@@ -38,14 +44,6 @@ public class User {
             CascadeType.DETACH,
             CascadeType.REFRESH
     })
-    private List<Topic> topics = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
-    private List<Comment> comments = new ArrayList<>();
+    private List<Like> likes = new ArrayList<>();
 
 }

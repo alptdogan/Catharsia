@@ -31,7 +31,7 @@ public class Topic {
             CascadeType.DETACH,
             CascadeType.REFRESH
     })
-    private List<Comment> clients = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
