@@ -1,9 +1,7 @@
 package com.alpdogan.catharsia.service;
 
 import com.alpdogan.catharsia.entity.Topic;
-import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.TopicRepository;
-import com.alpdogan.catharsia.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
