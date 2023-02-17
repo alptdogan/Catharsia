@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "topic")
+@Table(name = "comment")
 public class Comment {
 
     @Id
