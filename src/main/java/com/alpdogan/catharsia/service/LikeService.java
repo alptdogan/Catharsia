@@ -19,6 +19,7 @@ public class LikeService {
         return likeRepository.findAll();
     }
 
+    //is this method necessary? maybe for the first one idk...
     public void createLike(Like therapist) {
         likeRepository.save(therapist);
     }
