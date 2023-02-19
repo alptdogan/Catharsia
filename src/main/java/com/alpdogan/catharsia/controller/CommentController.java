@@ -59,7 +59,14 @@ public class CommentController {
 
     }
 
+    @GetMapping("/deleteComment")
+    public String deleteComment(@RequestParam("id") int id, Model model) {
 
+        commentService.deleteCommentById(id);
+
+        return "redirect:/comments";
+
+    }
 
 }
 
