@@ -31,7 +31,16 @@ public class CategoryController {
 
     }
 
+    //admin only?
+    @GetMapping("/newCategory")
+    public String displayCategoryForm (Model model) {
 
+        Category category = new Category();
+        model.addAttribute("category", category);
+
+        return "new-category";
+
+    }
 
 }
 
