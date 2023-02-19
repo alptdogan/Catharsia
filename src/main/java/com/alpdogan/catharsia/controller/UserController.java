@@ -62,6 +62,21 @@ public class UserController {
 
     }
 
+    @GetMapping("/updateUser")
+    public String displayUserUpdateForm(@RequestParam("id") int id, Model model) {
+
+        User user = new User();
+        List<Topic> topics = topicService.getAllTopics();
+        List<Comment> comments = commentService.getAllComments();
+
+        model.addAttribute("user", user);
+        model.addAttribute("allTopics", topics);
+        model.addAttribute("allComments", comments);
+
+        return "new-user";
+
+    }
+
 }
 
 
