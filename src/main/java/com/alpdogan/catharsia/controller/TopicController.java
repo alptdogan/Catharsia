@@ -22,7 +22,7 @@ public class TopicController {
     CommentService commentService;
 
     @GetMapping
-    public String displayClients (Model model) {
+    public String displayTopics (Model model) {
 
         List<Topic> topics = topicService.getAllTopics();
         model.addAttribute("topics", topics);
@@ -31,4 +31,32 @@ public class TopicController {
 
     }
 
+    @GetMapping("/newTopic")
+    public String displayTopicForm (Model model) {
+
+        Topic topic = new Topic();
+        model.addAttribute("topic", topic);
+
+        return "new-topic";
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
