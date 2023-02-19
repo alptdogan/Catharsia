@@ -77,6 +77,15 @@ public class UserController {
 
     }
 
+    @GetMapping("/deleteUser")
+    public String deleteTherapist(@RequestParam("id") int id, Model model) {
+
+        userService.deleteUserById(id);
+
+        return "redirect:/users";
+
+    }
+
 }
 
 
