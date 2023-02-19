@@ -62,6 +62,16 @@ public class CategoryController {
 
     }
 
+    // definitely admin only.
+    @GetMapping("/deleteCategory")
+    public String deleteCategory (@RequestParam("id") int id, Model model) {
+
+        categoryService.deleteCategoryById(id);
+
+        return "redirect:/categories";
+
+    }
+
 }
 
 
