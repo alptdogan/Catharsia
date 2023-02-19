@@ -24,9 +24,19 @@ public class TopicController {
     public String displayTopics (Model model) {
 
         List<Topic> topics = topicService.getAllTopics();
-        model.addAttribute("topics", topics);
+        model.addAttribute("topic", topics);
 
         return "list-topics";
+
+    }
+
+    @GetMapping("/details")
+    public String displayTopicDetails(@RequestParam("id") int id, Model model) {
+
+        Topic topic = topicService.getTopicById(id);
+        model.addAttribute("topic", topic);
+
+        return "topic-details";
 
     }
 
