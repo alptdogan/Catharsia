@@ -36,6 +36,16 @@ public class UserController {
 
     }
 
+    @GetMapping("/details")
+    public String displayUserDetails(@RequestParam("id") int id, Model model) {
+
+        User user = userService.getUserById(id);
+        model.addAttribute("user", user);
+
+        return "user-details";
+
+    }
+
     @GetMapping("/new")
     public String displayUserForm (Model model) {
 
@@ -78,7 +88,7 @@ public class UserController {
     }
 
     @GetMapping("/deleteUser")
-    public String deleteTherapist(@RequestParam("id") int id, Model model) {
+    public String deleteUser(@RequestParam("id") int id, Model model) {
 
         userService.deleteUserById(id);
 
