@@ -1,5 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
+import com.alpdogan.catharsia.entity.Comment;
+import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
@@ -34,6 +36,22 @@ public class UserController {
         return "list-users";
 
     }
+
+    @GetMapping("/new")
+    public String displayUserForm (Model model) {
+
+        User user = new User();
+        List<Topic> topics = topicService.getAllTopics();
+        List<Comment> comments = commentService.getAllComments();
+
+        model.addAttribute("user", user);
+        model.addAttribute("allTopics", topics);
+        model.addAttribute("allComments", comments);
+
+        return "new-user";
+
+    }
+
 
 
 }
