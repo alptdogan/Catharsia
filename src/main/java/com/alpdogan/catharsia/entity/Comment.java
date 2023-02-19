@@ -22,6 +22,9 @@ public class Comment {
     @Column (name = "id")
     private int id;
 
+    @Column(name = "likes")
+    private int likes;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
@@ -37,13 +40,5 @@ public class Comment {
             CascadeType.REFRESH
     })
     private Topic topic;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
-    private List<Like> likes = new ArrayList<>();
 
 }

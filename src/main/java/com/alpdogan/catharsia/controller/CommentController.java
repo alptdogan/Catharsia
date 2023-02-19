@@ -2,7 +2,6 @@ package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.service.CommentService;
-import com.alpdogan.catharsia.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +15,6 @@ public class CommentController {
 
     @Autowired
     CommentService commentService;
-
-    @Autowired
-    LikeService likeService;
 
     @GetMapping
     public String displayComments (Model model) {
