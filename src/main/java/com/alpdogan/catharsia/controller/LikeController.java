@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -26,4 +28,30 @@ public class LikeController {
 
     }
 
+    // must return +1, need to learn how to do it.
+    @PostMapping("/addLike")
+    public String createLike (@ModelAttribute("like") Like like) {
+
+        likeService.createLike(like);
+
+        return "redirect:/likes";
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
