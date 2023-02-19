@@ -59,6 +59,15 @@ public class TopicController {
 
     }
 
+    @GetMapping("/deleteTopic")
+    public String deleteTopic(@RequestParam("id") int id, Model model) {
+
+        topicService.deleteTopicById(id);
+
+        return "redirect:/topics";
+
+    }
+
 }
 
 
