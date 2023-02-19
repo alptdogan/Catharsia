@@ -31,4 +31,14 @@ public class CommentController {
 
     }
 
+    @GetMapping("/newComment")
+    public String displayCommentForm (Model model) {
+
+        Comment comment = new Comment();
+        model.addAttribute("comment", comment);
+
+        return "new-comment";
+
+    }
+
 }
