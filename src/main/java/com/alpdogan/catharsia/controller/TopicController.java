@@ -6,10 +6,7 @@ import com.alpdogan.catharsia.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +46,16 @@ public class TopicController {
         topicService.createTopic(topic);
 
         return "redirect:/topics";
+
+    }
+
+    @GetMapping("/updateTopic")
+    public String displayTopicUpdateForm(@RequestParam("id") int id, Model model) {
+
+        Topic topic = topicService.getTopicById(id);
+        model.addAttribute("topic", topic);
+
+        return "new-topic";
 
     }
 
