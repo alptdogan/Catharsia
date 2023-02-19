@@ -37,12 +37,22 @@ public class LikeController {
 
     // how to update likes???
     @GetMapping("/updateLike")
-    public String displayLikeUpdateForm(@RequestParam("id") int id, Model model) {
+    public String displayLikeUpdateForm (@RequestParam("id") int id, Model model) {
 
-        Like like = likeService.getAllLikes().get(id)//.setId(?);
+        Like like = likeService.getAllLikes().get(id); //.setId(?);
         model.addAttribute("like", like);
 
         return "new-like";
+
+    }
+
+    // do we delete likes by theirs IDs?
+    @GetMapping("/deleteLike")
+    public String deleteLike (@RequestParam("id") int id, Model model) {
+
+        likeService.deleteLikeById(id);
+
+        return "redirect:/likes";
 
     }
 
