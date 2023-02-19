@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class CategoryController {
 
     }
 
-    //admin only?
+    // admin only?
     @GetMapping("/newCategory")
     public String displayCategoryForm (Model model) {
 
@@ -39,6 +41,16 @@ public class CategoryController {
         model.addAttribute("category", category);
 
         return "new-category";
+
+    }
+
+    // again, admin only?
+    @PostMapping("/addCategory")
+    public String createCategory (@ModelAttribute("category") Category category) {
+
+        categoryService.createCategory(category);
+
+        return "redirect:/categories";
 
     }
 
