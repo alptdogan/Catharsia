@@ -46,7 +46,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/new")
+    @GetMapping("/newUser")
     public String displayUserForm (Model model) {
 
         User user = new User();
@@ -61,7 +61,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/addUSer")
+    @PostMapping("/addUser")
     public String createUser (@ModelAttribute("user") User user,
                                    @RequestParam List<Long> topics,
                                    @RequestParam List<Long> comments) {
