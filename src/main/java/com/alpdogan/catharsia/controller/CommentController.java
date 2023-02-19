@@ -30,6 +30,16 @@ public class CommentController {
 
     }
 
+    @GetMapping("/details")
+    public String displayCommentDetails(@RequestParam("id") int id, Model model) {
+
+        Comment comment = commentService.getCommentById(id);
+        model.addAttribute("comment", comment);
+
+        return "comment-details";
+
+    }
+
     @GetMapping("/newComment")
     public String displayCommentForm (Model model) {
 
