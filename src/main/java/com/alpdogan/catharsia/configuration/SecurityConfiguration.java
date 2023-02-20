@@ -44,6 +44,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> {
                     try {
                         auth.requestMatchers("/home").permitAll()
+
+                                .requestMatchers("/swagger-ui/**").hasAnyRole("ADMIN", "USER")
+
                                 .requestMatchers("/categories/**").hasRole("ADMIN")
 
                                 .requestMatchers("/comments/").hasAnyRole("ADMIN", "USER")
