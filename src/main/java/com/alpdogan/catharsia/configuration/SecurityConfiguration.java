@@ -1,15 +1,19 @@
 package com.alpdogan.catharsia.configuration;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -19,22 +23,34 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
+    @Autowired
+    private DataSource dataSource;
+
     @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-
-        UserDetails therapist = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(therapist, admin);
-
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService();
     }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+
+    /*
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
+     */
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -45,7 +61,9 @@ public class SecurityConfiguration {
                     try {
                         auth.antMatchers("/home").permitAll()
 
-                                .antMatchers("/swagger-ui/**").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/register").permitAll()
+
+                                .antMatchers("/swagger-ui/**").hasRole("ADMIN")
 
                                 .antMatchers("/categories/**").hasRole("ADMIN")
 
@@ -79,8 +97,11 @@ public class SecurityConfiguration {
 
                                 .antMatchers("/dashboard").authenticated()
                                 .and().formLogin().loginPage("/login")
-                                .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
-                                .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll();
+                                            .usernameParameter("email")
+                                            .defaultSuccessUrl("/dashboard")
+                                            .failureUrl("/login?error=true").permitAll()
+                                .and()
+                                .logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
