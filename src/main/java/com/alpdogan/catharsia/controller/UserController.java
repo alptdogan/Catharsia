@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     CommentService commentService;
 
-    @GetMapping
+    @GetMapping("/displayUsers")
     public String displayUsers (Model model) {
 
         List<User> users = userService.getAllUsers();
