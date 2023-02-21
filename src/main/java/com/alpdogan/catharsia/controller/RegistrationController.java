@@ -17,7 +17,7 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/register")
+    @GetMapping
     public String showRegistrationForm(Model model) {
 
         model.addAttribute("user", new User());
