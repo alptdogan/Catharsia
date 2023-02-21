@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -28,8 +28,8 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
