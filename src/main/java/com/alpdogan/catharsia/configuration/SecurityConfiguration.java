@@ -29,7 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
 
     @Autowired
-    private DataSource dataSource;
+    DataSource dataSource;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -72,6 +72,16 @@ public class SecurityConfiguration {
 
                                 .antMatchers("/categories/**").hasRole("ADMIN")
 
+                                /*
+
+                                .antMatchers("/comments/").hasAnyRole("ADMIN", "USER")
+
+                                .antMatchers("/topics/").hasAnyRole("ADMIN", "USER")
+
+                                .antMatchers("/users/").hasAnyRole("ADMIN", "USER")
+
+                                 */
+
                                 .antMatchers("/comments/").hasAnyRole("ADMIN", "USER")
                                 .antMatchers("/comments/newComment").hasAnyRole("ADMIN", "USER")
                                 .antMatchers("/comments/addComment").hasAnyRole("ADMIN", "USER")
@@ -93,13 +103,13 @@ public class SecurityConfiguration {
                                 .antMatchers("/topics/updateTopic").hasAnyRole("ADMIN", "USER")
                                 .antMatchers("/topics/deleteTopic").hasRole("ADMIN")
 
-                                .antMatchers("/user/").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/displayUsers").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/newUser").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/addUser").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/details").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/updateUser").hasAnyRole("ADMIN", "USER")
-                                .antMatchers("/user/deleteUser").hasRole("ADMIN")
+                                .antMatchers("/users/").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/displayUsers").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/newUser").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/addUser").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/details").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/updateUser").hasAnyRole("ADMIN", "USER")
+                                .antMatchers("/users/deleteUser").hasRole("ADMIN")
 
                                 .antMatchers("/dashboard").authenticated()
                                 .and().formLogin().loginPage("/login")
