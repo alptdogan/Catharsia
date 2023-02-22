@@ -1,4 +1,4 @@
-package com.alpdogan.catharsia.configuration;
+package com.alpdogan.catharsia.configuration.security.services;
 
 import com.alpdogan.catharsia.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;

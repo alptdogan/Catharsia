@@ -1,7 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
-import com.alpdogan.catharsia.configuration.JwtUtils;
-import com.alpdogan.catharsia.configuration.UserDetailsImpl;
+import com.alpdogan.catharsia.configuration.security.jwt.JwtUtils;
+import com.alpdogan.catharsia.configuration.security.services.UserDetailsImpl;
 import com.alpdogan.catharsia.entity.ERole;
 import com.alpdogan.catharsia.entity.Role;
 import com.alpdogan.catharsia.entity.User;

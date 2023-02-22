@@ -1,4 +1,4 @@
-package com.alpdogan.catharsia.configuration;
+package com.alpdogan.catharsia.configuration.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

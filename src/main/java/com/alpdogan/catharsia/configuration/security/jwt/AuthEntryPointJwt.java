@@ -1,4 +1,4 @@
-package com.alpdogan.catharsia.configuration;
+package com.alpdogan.catharsia.configuration.security.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,8 @@
-package com.alpdogan.catharsia.configuration;
+package com.alpdogan.catharsia.configuration.security;
 
+import com.alpdogan.catharsia.configuration.security.jwt.AuthEntryPointJwt;
+import com.alpdogan.catharsia.configuration.security.jwt.AuthTokenFilter;
+import com.alpdogan.catharsia.configuration.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
