@@ -1,6 +1,9 @@
 package com.alpdogan.catharsia.controller;
 
+import com.alpdogan.catharsia.entity.Category;
+import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
+import com.alpdogan.catharsia.service.CategoryService;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class TopicController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    CategoryService categoryService;
 
     @GetMapping
     public String displayTopics (Model model) {
@@ -44,14 +50,20 @@ public class TopicController {
     public String displayTopicForm (Model model) {
 
         Topic topic = new Topic();
+        List<Comment> comments = commentService.getAllComments();
+        List<Category> categories = categoryService.getAllCategories();
+
         model.addAttribute("topic", topic);
+        model.addAttribute("allComments", comments);
+        model.addAttribute("allCategories", categories);
 
         return "new-topic";
 
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (@ModelAttribute("topic") Topic topic) {
+    public String createTopic (@ModelAttribute("topic") Topic topic,
+                                    @RequestParam List<Long> comments) {
 
         topicService.createTopic(topic);
 
@@ -63,7 +75,13 @@ public class TopicController {
     public String displayTopicUpdateForm(@RequestParam("id") int id, Model model) {
 
         Topic topic = topicService.getTopicById(id);
+        List<Comment> comments = commentService.getAllComments();
+        List<Category> categories = categoryService.getAllCategories();
+
         model.addAttribute("topic", topic);
+        model.addAttribute("allComments", comments);
+        model.addAttribute("allCategories", categories);
+
 
         return "new-topic";
 
