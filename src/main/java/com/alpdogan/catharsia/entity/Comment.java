@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,8 +23,14 @@ public class Comment {
     @Column (name = "id")
     private int id;
 
+    @Column(name = "text")
+    private String text;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
     @Column(name = "likes")
-    private int likes;
+    private int[] likes;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
