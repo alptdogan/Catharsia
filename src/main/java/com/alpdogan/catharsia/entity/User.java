@@ -50,6 +50,15 @@ public class User {
     @Column(name = "password", length = 120)
     private String password;
 
+    @Column(name = "bio")
+    private String bio;
+
+    @Column(name = "followers")
+    private String[] followers;
+
+    @Column(name = "followings")
+    private String[] followings;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
