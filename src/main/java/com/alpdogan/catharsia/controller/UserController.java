@@ -63,8 +63,8 @@ public class UserController {
 
     @PostMapping("/addUser")
     public String createUser (@ModelAttribute("user") User user,
-                                   @RequestParam List<Long> topics,
-                                   @RequestParam List<Long> comments) {
+                                   @RequestParam List<Integer> topics,
+                                   @RequestParam List<Integer> comments) {
 
         userService.createUser(user);
 

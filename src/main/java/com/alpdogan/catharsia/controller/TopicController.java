@@ -63,7 +63,8 @@ public class TopicController {
 
     @PostMapping("/addTopic")
     public String createTopic (@ModelAttribute("topic") Topic topic,
-                                    @RequestParam List<Long> comments) {
+                                    @RequestParam List<Long> comments,
+                                    @RequestParam Category category) {
 
         topicService.createTopic(topic);
 
@@ -81,7 +82,6 @@ public class TopicController {
         model.addAttribute("topic", topic);
         model.addAttribute("allComments", comments);
         model.addAttribute("allCategories", categories);
-
 
         return "new-topic";
 
