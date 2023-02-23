@@ -63,6 +63,8 @@ public class WebSecurityConfig {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
 
+                .antMatchers("/swagger-ui/**").permitAll()
+
                 .antMatchers("/topics/**").permitAll()
 
                 .anyRequest().authenticated();
