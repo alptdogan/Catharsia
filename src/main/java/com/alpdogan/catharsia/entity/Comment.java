@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,11 +24,11 @@ public class Comment {
     @Column (name = "id")
     private int id;
 
-    @Column(name = "text")
+    @Column(name = "text", length = 1337, columnDefinition = "text")
     private String text;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "likes")
     private int[] likes;
