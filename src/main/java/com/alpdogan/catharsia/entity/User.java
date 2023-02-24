@@ -53,11 +53,13 @@ public class User {
     @Column(name = "bio")
     private String bio;
 
+    /*
     @Column(name = "followers")
     private String[] followers;
 
     @Column(name = "following")
     private String[] following;
+     */
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",

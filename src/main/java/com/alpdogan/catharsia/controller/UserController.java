@@ -3,6 +3,7 @@ package com.alpdogan.catharsia.controller;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.entity.User;
+import com.alpdogan.catharsia.repository.RoleRepository;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
 import com.alpdogan.catharsia.service.UserService;
@@ -26,7 +27,10 @@ public class UserController {
     @Autowired
     CommentService commentService;
 
-    @GetMapping("/displayUsers")
+    @Autowired
+    RoleRepository roleRepository;
+
+    @GetMapping
     public String displayUsers (Model model) {
 
         List<User> users = userService.getAllUsers();
@@ -46,44 +50,22 @@ public class UserController {
 
     }
 
-    @GetMapping("/newUser")
-    public String displayUserForm (Model model) {
-
-        User user = new User();
-        List<Topic> topics = topicService.getAllTopics();
-        List<Comment> comments = commentService.getAllComments();
-
-        model.addAttribute("user", user);
-        model.addAttribute("allTopics", topics);
-        model.addAttribute("allComments", comments);
-
-        return "new-user";
-
-    }
-
-    @PostMapping("/addUser")
-    public String createUser (@ModelAttribute("user") User user,
-                                   @RequestParam List<Integer> topics,
-                                   @RequestParam List<Integer> comments) {
-
-        userService.createUser(user);
-
-        return "redirect:/users";
-
-    }
-
     @GetMapping("/updateUser")
-    public String displayUserUpdateForm(@RequestParam("id") int id, Model model) {
+    public String displayUserEmailUpdateForm(@RequestParam("id") int id, Model model) {
 
-        User user = new User();
-        List<Topic> topics = topicService.getAllTopics();
-        List<Comment> comments = commentService.getAllComments();
+        User user = userService.getUserById(id);
 
-        model.addAttribute("user", user);
-        model.addAttribute("allTopics", topics);
-        model.addAttribute("allComments", comments);
+        userService.updateUserById(id, user);
 
-        return "new-user";
+        //User user = new User();
+        //List<Topic> topics = topicService.getAllTopics();
+        //List<Comment> comments = commentService.getAllComments();
+
+        //model.addAttribute("user", user);
+        //model.addAttribute("allTopics", topics);
+        //model.addAttribute("allComments", comments);
+
+        return "update-user-email";
 
     }
 
