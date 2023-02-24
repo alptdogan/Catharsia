@@ -143,7 +143,7 @@ public class WebSecurityConfig {
 
                                 .antMatchers("/dashboard").authenticated()
                                 .and().formLogin().loginPage("/login")
-                                .usernameParameter("email")
+                                .usernameParameter("username")
                                 .defaultSuccessUrl("/dashboard")
                                 .failureUrl("/login?error=true").permitAll()
                                 .and()
