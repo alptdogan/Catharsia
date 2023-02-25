@@ -3,6 +3,7 @@ package com.alpdogan.catharsia.controller;
 import com.alpdogan.catharsia.entity.Category;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
+import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.CategoryService;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
@@ -72,18 +73,26 @@ public class TopicController {
 
     }
 
-    @GetMapping("/updateTopic")
+    @GetMapping("/update")
     public String displayTopicUpdateForm(@RequestParam("id") int id, Model model) {
 
         Topic topic = topicService.getTopicById(id);
-        List<Comment> comments = commentService.getAllComments();
-        List<Category> categories = categoryService.getAllCategories();
 
         model.addAttribute("topic", topic);
-        model.addAttribute("allComments", comments);
-        model.addAttribute("allCategories", categories);
 
-        return "new-topic";
+        return "update-topic";
+
+    }
+
+    @PostMapping("/updateTopic")
+    public String updateTopic(@ModelAttribute ("topic") Topic topic,
+                              @RequestParam("title") String title //,
+                              //@RequestParam List<Long> categories
+                                            ) {
+
+        topicService.updateTopicByTitle(title, topic);
+
+        return "redirect:/topics";
 
     }
 
