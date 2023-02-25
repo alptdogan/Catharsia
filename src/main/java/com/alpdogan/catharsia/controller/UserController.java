@@ -50,22 +50,34 @@ public class UserController {
 
     }
 
-    @GetMapping("/updateUser")
-    public String displayUserEmailUpdateForm(@RequestParam("id") int id, Model model) {
+    @GetMapping("/update")
+    public String displayUserUpdateForm(@RequestParam("id") int id, Model model) {
 
-        User user = userService.getUserById(id);
+        //User user = userService.getUserById(id);
 
-        userService.updateUserById(id, user);
+        //userService.updateUserById(id, user);
 
-        //User user = new User();
+        User user = new User();
         //List<Topic> topics = topicService.getAllTopics();
         //List<Comment> comments = commentService.getAllComments();
 
-        //model.addAttribute("user", user);
+        model.addAttribute("user", user);
         //model.addAttribute("allTopics", topics);
         //model.addAttribute("allComments", comments);
 
-        return "update-user-email";
+        return "update-user";
+
+    }
+
+    @PostMapping("/updateUser")
+    public String updateUser (@ModelAttribute ("user") User user,
+                                    @RequestParam("email") String email //,
+                                   //@RequestParam List<Long> categories
+                                                            ) {
+
+        userService.updateUserByEmail(email, user);
+
+        return "redirect:/users";
 
     }
 

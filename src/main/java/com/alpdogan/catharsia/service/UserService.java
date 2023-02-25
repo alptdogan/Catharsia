@@ -27,8 +27,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUserById(int id, User user) {
-        user.setId(id);
+    public void updateUserByEmail(String email, User user) {
+        user.setBio(user.getBio());
+        user.setEmail(email);
         userRepository.save(user);
     }
 
