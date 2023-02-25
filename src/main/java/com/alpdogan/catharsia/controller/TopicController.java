@@ -51,21 +51,23 @@ public class TopicController {
     public String displayTopicForm (Model model) {
 
         Topic topic = new Topic();
-        List<Comment> comments = commentService.getAllComments();
-        List<Category> categories = categoryService.getAllCategories();
+
+        //List<Comment> comments = commentService.getAllComments();
+        //List<Category> categories = categoryService.getAllCategories();
 
         model.addAttribute("topic", topic);
-        model.addAttribute("allComments", comments);
-        model.addAttribute("allCategories", categories);
+        //model.addAttribute("allComments", comments);
+        //model.addAttribute("allCategories", categories);
 
         return "new-topic";
 
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (@ModelAttribute("topic") Topic topic,
-                                    @RequestParam List<Long> comments,
-                                    @RequestParam Category category) {
+    public String createTopic (@ModelAttribute("topic") Topic topic //,
+                                    //@RequestParam List<Long> comments,
+                                    //@RequestParam Category category
+                                            ) {
 
         topicService.createTopic(topic);
 
