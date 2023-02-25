@@ -23,20 +23,20 @@
   <table class="table table-striped" style="width:600px;">
 
     <tr>
-      <th>First Name</th>
+      <th>Title</th>
       <td th:text="${topic.title}">[Title]</td>
     </tr>
 
 
     <tr>
-      <a th:href="@{/topics/updateTopic(id=${topic.id})}"
+      <a th:href="@{/topics/update(id=${topic.id})}"
          class="btn btn-info btn-sm">
         Update
       </a>
 
       <a th:href="@{/topics/deleteTopic/(id=${topic.id})}"
          class="btn btn-danger btn-sm"
-         onClick="if (!(confirm('Are you sure you want to delete this user?'))) return false">
+         onClick="if (!(confirm('Are you sure you want to delete this topic?'))) return false">
         Delete
       </a>
     </tr>
