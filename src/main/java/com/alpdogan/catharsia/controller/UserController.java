@@ -53,11 +53,11 @@ public class UserController {
     @GetMapping("/update")
     public String displayUserUpdateForm(@RequestParam("id") int id, Model model) {
 
-        //User user = userService.getUserById(id);
+        User user = userService.getUserById(id);
 
-        //userService.updateUserById(id, user);
+        //userService.updateUserByEmail();
 
-        User user = new User();
+        //User user = new User();
         //List<Topic> topics = topicService.getAllTopics();
         //List<Comment> comments = commentService.getAllComments();
 
