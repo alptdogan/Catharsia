@@ -92,7 +92,11 @@ public class TopicController {
                               //@RequestParam List<Long> categories
                                             ) {
 
-        topicService.updateTopicByTitle(title, topic);
+        Topic topicToUpdate = topicService.getTopicByTitle(title);
+
+        topicToUpdate.setTitle(topic.getTitle());
+
+        topicService.updateTopic(topicToUpdate);
 
         return "redirect:/topics";
 
