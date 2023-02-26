@@ -2,6 +2,7 @@ package com.alpdogan.catharsia.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -18,10 +19,11 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private int id;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(name = "name")
     private ECategory name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {
