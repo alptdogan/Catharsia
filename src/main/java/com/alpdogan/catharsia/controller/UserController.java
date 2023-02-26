@@ -71,11 +71,14 @@ public class UserController {
 
     @PostMapping("/updateUser")
     public String updateUser (@ModelAttribute ("user") User user,
-                                    @RequestParam("email") String email //,
+                                    @RequestParam("email") String email
                                    //@RequestParam List<Long> categories
                                                             ) {
+        User user1 = userService.getUserByEmail(email);
 
-        userService.updateUserByEmail(email, user);
+        user1.setBio(user.getBio());
+
+        userService.updateUserByEmail(email, user1);
 
         return "redirect:/users";
 

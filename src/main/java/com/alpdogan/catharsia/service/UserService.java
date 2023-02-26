@@ -23,9 +23,13 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     public void updateUserByEmail(String email, User user) {
-        user.setBio(user.getBio());
-        user.setEmail(email);
+        //user.setBio(user.getBio());
+        //user.setEmail(email);
         userRepository.save(user);
     }
 
