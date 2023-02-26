@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
+import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,13 +58,24 @@ public class CommentController {
 
     }
 
-    @GetMapping("/updateComment")
+    @GetMapping("/update")
     public String displayCommentUpdateForm(@RequestParam("id") int id, Model model) {
 
         Comment comment = commentService.getCommentById(id);
         model.addAttribute("comment", comment);
 
-        return "new-comment";
+        return "update-comment";
+
+    }
+
+    @PostMapping("/updateComment")
+    public String updateComment(@ModelAttribute ("comment") Comment comment,
+                              @RequestParam String text
+                              ) {
+
+        commentService.updateCommentById(text, comment);
+
+        return "redirect:/comments";
 
     }
 

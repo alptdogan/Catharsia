@@ -28,8 +28,8 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public void updateCommentById(int id, Comment comment) {
-        comment.setId(id);
+    public void updateCommentById(String text, Comment comment) {
+        comment.setText(text);
         commentRepository.save(comment);
     }
 

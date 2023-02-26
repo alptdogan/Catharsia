@@ -23,10 +23,6 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
-    public void createUser(User user) {
-        userRepository.save(user);
-    }
-
     public void updateUserByEmail(String email, User user) {
         user.setBio(user.getBio());
         user.setEmail(email);
