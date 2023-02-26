@@ -16,6 +16,7 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    //display where?
     @GetMapping
     public String displayComments (Model model) {
 
@@ -26,6 +27,7 @@ public class CommentController {
 
     }
 
+    //likes and so on
     @GetMapping("/details")
     public String displayCommentDetails(@RequestParam("id") int id, Model model) {
 
