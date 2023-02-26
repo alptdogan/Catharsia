@@ -27,11 +27,14 @@ public class Topic {
     @Column(name = "title")
     private String title;
 
+    /*
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "topic_categories",
             joinColumns = @JoinColumn(name = "topic_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+     */
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
@@ -57,6 +60,7 @@ public class Topic {
     })
     private Category category;
 
+    /*
     public Set<Category> getCategories() {
         return categories;
     }
@@ -64,5 +68,7 @@ public class Topic {
     public void setCategory(Set<Category> categories) {
         this.categories = categories;
     }
+
+     */
 
 }
