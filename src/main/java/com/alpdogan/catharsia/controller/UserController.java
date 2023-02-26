@@ -78,7 +78,7 @@ public class UserController {
 
         userToUpdate.setBio(user.getBio());
 
-        userService.updateUserByEmail(email, userToUpdate);
+        userService.updateUser(userToUpdate);
 
         return "redirect:/users";
 

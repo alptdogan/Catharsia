@@ -27,7 +27,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void updateUserByEmail(String email, User user) {
+    public void updateUser(User user) {
         //user.setBio(user.getBio());
         //user.setEmail(email);
         userRepository.save(user);
