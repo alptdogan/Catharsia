@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +23,14 @@ public class Category {
     @Enumerated(EnumType.STRING)
     @Column
     private ECategory name;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    })
+    private List<Topic> topics = new ArrayList<>();
 
     public Category() {
 

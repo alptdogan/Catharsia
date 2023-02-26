@@ -49,6 +49,14 @@ public class Topic {
     })
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    })
+    private Category category;
+
     public Set<Category> getCategories() {
         return categories;
     }
