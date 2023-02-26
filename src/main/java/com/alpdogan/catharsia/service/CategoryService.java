@@ -23,17 +23,4 @@ public class CategoryService {
         return categoryRepository.findCategoryById(id);
     }
 
-    public void createCategory(Category category) {
-        categoryRepository.save(category);
-    }
-
-    public void updateCategoryById(int id, Category category) {
-        category.setId(id);
-        categoryRepository.save(category);
-    }
-
-    public void deleteCategoryById(int id) {
-        categoryRepository.delete(categoryRepository.findCategoryById(id));
-    }
-
 }
