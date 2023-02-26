@@ -74,11 +74,11 @@ public class UserController {
                                     @RequestParam("email") String email
                                    //@RequestParam List<Long> categories
                                                             ) {
-        User user1 = userService.getUserByEmail(email);
+        User userToUpdate = userService.getUserByEmail(email);
 
-        user1.setBio(user.getBio());
+        userToUpdate.setBio(user.getBio());
 
-        userService.updateUserByEmail(email, user1);
+        userService.updateUserByEmail(email, userToUpdate);
 
         return "redirect:/users";
 
