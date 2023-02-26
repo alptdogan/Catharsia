@@ -28,7 +28,7 @@ public class TopicService {
     }
 
     public void updateTopicByTitle(String title, Topic topic) {
-        topic.setTitle(title);
+        //topic.setTitle(title);
         // we can set whatever field we need to update, later.
         topicRepository.save(topic);
     }
