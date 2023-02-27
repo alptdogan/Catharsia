@@ -1,11 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
-import com.alpdogan.catharsia.entity.Category;
-import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
-import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.TopicRepository;
-import com.alpdogan.catharsia.service.CategoryService;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +24,10 @@ public class TopicController {
     @Autowired
     CommentService commentService;
 
+    /*
     @Autowired
     CategoryService categoryService;
+     */
 
     @GetMapping
     public String displayTopics (Model model) {
@@ -95,10 +93,6 @@ public class TopicController {
                               @RequestParam(value = "title") String title //,
                               //@RequestParam List<Long> categories
                                             ) {
-
-        //Topic topic1 = topicService.getTopicByTitle(title);
-
-        //topicToUpdate.setTitle(topic.getTitle());
 
         Topic topic1 = topicService.getTopicByTitle(title);
 
