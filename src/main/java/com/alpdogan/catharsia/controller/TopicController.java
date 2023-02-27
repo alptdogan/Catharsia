@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.util.List;
 
 @Controller
@@ -88,11 +89,15 @@ public class TopicController {
 
     @PostMapping("/updateTopic")
     public String updateTopic(@ModelAttribute ("topic") Topic topic,
-                              @RequestParam(value = "title") String title //,
+                              @RequestParam("id") int id //,
                               //@RequestParam List<Long> categories
                                             ) {
 
-        Topic topic1 = topicService.getTopicByTitle(title);
+        //Topic topic1 = new Topic();
+
+        Topic topic1 = topicService.getTopicById(id);
+
+        //topic1.setTitle(title);
 
         topic1.setTitle(topic.getTitle());
 
