@@ -4,6 +4,7 @@ import com.alpdogan.catharsia.entity.Category;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.entity.User;
+import com.alpdogan.catharsia.repository.TopicRepository;
 import com.alpdogan.catharsia.service.CategoryService;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
 import java.util.List;
 
 @Controller
@@ -21,6 +21,9 @@ public class TopicController {
 
     @Autowired
     TopicService topicService;
+
+    @Autowired
+    TopicRepository topicRepository;
 
     @Autowired
     CommentService commentService;
@@ -89,15 +92,15 @@ public class TopicController {
 
     @PostMapping("/updateTopic")
     public String updateTopic(@ModelAttribute ("topic") Topic topic,
-                              @RequestParam("id") int id //,
+                              @RequestParam(value = "title") String title //,
                               //@RequestParam List<Long> categories
                                             ) {
 
-        //Topic topic1 = new Topic();
+        //Topic topic1 = topicService.getTopicByTitle(title);
 
-        Topic topic1 = topicService.getTopicById(id);
+        //topicToUpdate.setTitle(topic.getTitle());
 
-        //topic1.setTitle(title);
+        Topic topic1 = topicService.getTopicByTitle(title);
 
         topic1.setTitle(topic.getTitle());
 

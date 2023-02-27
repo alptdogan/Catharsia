@@ -1,7 +1,6 @@
 package com.alpdogan.catharsia.service;
 
 import com.alpdogan.catharsia.entity.Topic;
-import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import java.util.List;
 public class TopicService {
 
     @Autowired
-    private TopicRepository topicRepository;
+    TopicRepository topicRepository;
 
     public List<Topic> getAllTopics() {
         return topicRepository.findAll();
@@ -33,7 +32,7 @@ public class TopicService {
     }
 
     public void updateTopic(Topic topic) {
-        //topic.setTitle(title);
+        //topic.setTitle(topic.getTitle());
         // we can set whatever field we need to update, later.
         topicRepository.save(topic);
     }

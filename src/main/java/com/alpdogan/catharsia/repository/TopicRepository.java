@@ -9,5 +9,5 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
     Topic findTopicById(int id);
 
     @Query("SELECT u FROM Topic u WHERE u.title = ?1")
-    public Topic findByTitle(String title);
+    Topic findByTitle(String title);
 }
