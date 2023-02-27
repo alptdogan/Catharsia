@@ -88,15 +88,15 @@ public class TopicController {
 
     @PostMapping("/updateTopic")
     public String updateTopic(@ModelAttribute ("topic") Topic topic,
-                              @RequestParam("title") String title //,
+                              @RequestParam(value = "title") String title //,
                               //@RequestParam List<Long> categories
                                             ) {
 
-        Topic topicToUpdate = topicService.getTopicByTitle(title);
+        Topic topic1 = topicService.getTopicByTitle(title);
 
-        topicToUpdate.setTitle(topic.getTitle());
+        topic1.setTitle(topic.getTitle());
 
-        topicService.updateTopic(topicToUpdate);
+        topicService.updateTopic(topic1);
 
         return "redirect:/topics";
 

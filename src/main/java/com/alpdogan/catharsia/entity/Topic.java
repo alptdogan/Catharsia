@@ -16,7 +16,10 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "topic")
+@Table(name = "topic",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = "title")
+        })
 public class Topic {
 
     @Id
@@ -24,7 +27,7 @@ public class Topic {
     @Column (name = "id")
     private int id;
 
-    @Column(name = "title")
+    @Column(name = "title", unique = true)
     private String title;
 
     /*
