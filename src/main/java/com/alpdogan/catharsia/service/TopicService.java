@@ -1,5 +1,6 @@
 package com.alpdogan.catharsia.service;
 
+import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class TopicService {
     @Autowired
     TopicRepository topicRepository;
 
+    @Autowired
+    CommentService commentService;
+
     public List<Topic> getAllTopics() {
         return topicRepository.findAll();
     }
@@ -24,6 +28,7 @@ public class TopicService {
     }
 
     public void createTopic(Topic topic) {
+        //commentService.createComment(comment);
         topicRepository.save(topic);
     }
 

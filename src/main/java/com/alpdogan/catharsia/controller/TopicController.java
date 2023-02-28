@@ -1,5 +1,6 @@
 package com.alpdogan.catharsia.controller;
 
+import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.repository.TopicRepository;
 import com.alpdogan.catharsia.service.CommentService;
@@ -53,11 +54,12 @@ public class TopicController {
     public String displayTopicForm (Model model) {
 
         Topic topic = new Topic();
-
+        Comment comment = new Comment();
         //List<Comment> comments = commentService.getAllComments();
         //List<Category> categories = categoryService.getAllCategories();
 
         model.addAttribute("topic", topic);
+        model.addAttribute("comment", comment);
         //model.addAttribute("allComments", comments);
         //model.addAttribute("allCategories", categories);
 
@@ -66,10 +68,17 @@ public class TopicController {
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (@ModelAttribute("topic") Topic topic //,
-                                    //@RequestParam List<Long> comments,
+    public String createTopic (//@ModelAttribute("comment") Comment comment,
+                               @ModelAttribute("topic") Topic topic
+                               //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
                                             ) {
+
+
+
+        //commentService.createComment((Comment) comments);
+
+        //commentService.createComment(comment);
 
         topicService.createTopic(topic);
 
