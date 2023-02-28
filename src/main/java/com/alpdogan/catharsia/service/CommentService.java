@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public void updateCommentById(String text, Comment comment) {
+    public void updateCommentById(String text, LocalDateTime createdAt, Comment comment) {
         comment.setText(text);
         commentRepository.save(comment);
     }

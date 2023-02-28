@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -71,10 +73,11 @@ public class CommentController {
 
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute ("comment") Comment comment,
-                              @RequestParam String text
-                              ) {
+                                @RequestParam String text,
+                                @RequestParam LocalDateTime createdAt
+                                ) {
 
-        commentService.updateCommentById(text, comment);
+        commentService.updateCommentById(text, createdAt, comment);
 
         return "redirect:/comments";
 

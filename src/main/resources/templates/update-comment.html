@@ -21,10 +21,18 @@
   <form th:action="@{/comments/updateComment}" th:object="${comment}" method="POST">
 
     <input type="hidden" th:field="${comment.id}"/>
+    <!--
+    <input type="hidden" th:field="${comment.createdAt}"/>
+    -->
 
     <div class="form-group row">
       <input type="text" placeholder="Text" th:field="${comment.text}">
     </div>
+    <!-- HOW TO DO THIS?? will find out.
+    <div class="form-group row">
+      <input type="datetime-local" placeholder="Date" th:field="${comment.createdAt}">
+    </div>
+    -->
 
     <!--
     <div class="form-group row">
