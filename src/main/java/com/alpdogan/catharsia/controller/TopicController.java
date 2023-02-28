@@ -56,7 +56,7 @@ public class TopicController {
 
         Topic topic = new Topic();
         Comment comment = new Comment();
-        topic.setId(comment.getId());
+        topic.getComments().add(comment);
         //List<Comment> comments = commentService.getAllComments();
         //List<Category> categories = categoryService.getAllCategories();
 
