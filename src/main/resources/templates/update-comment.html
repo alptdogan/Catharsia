@@ -21,9 +21,9 @@
   <form th:action="@{/comments/updateComment}" th:object="${comment}" method="POST">
 
     <input type="hidden" th:field="${comment.id}"/>
-    <!--
+
     <input type="hidden" th:field="${comment.createdAt}"/>
-    -->
+
 
     <div class="form-group row">
       <input type="text" placeholder="Text" th:field="${comment.text}">
