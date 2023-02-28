@@ -31,6 +31,7 @@ public class CommentService {
 
     public void updateCommentById(String text, LocalDateTime createdAt, Comment comment) {
         comment.setText(text);
+        //comment.setCreatedAt(createdAt);
         commentRepository.save(comment);
     }
 
