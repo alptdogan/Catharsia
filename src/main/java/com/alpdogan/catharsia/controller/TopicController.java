@@ -68,7 +68,7 @@ public class TopicController {
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (//@ModelAttribute("comment") Comment comment,
+    public String createTopic (@ModelAttribute("comment") Comment comment,
                                @ModelAttribute("topic") Topic topic
                                //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
@@ -78,7 +78,7 @@ public class TopicController {
 
         //commentService.createComment((Comment) comments);
 
-        //commentService.createComment(comment);
+        commentService.createComment(comment);
 
         topicService.createTopic(topic);
 
