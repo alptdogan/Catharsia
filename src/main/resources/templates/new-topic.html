@@ -21,12 +21,16 @@
   <form th:action="@{/topics/addTopic}" th:object="${topic}" method="POST">
 
     <input type="hidden" th:field="${topic.id}"/>
+    <input type="hidden" th:field="${comment.createdAt}"/>
+    <!--
+    <input type="hidden" th:field="${comment.id}"/>
+    -->
 
     <div class="form-group row">
       <input type="text" placeholder="Title" th:field="${topic.title}">
     </div>
     <div class="form-group row">
-      <input type="text" placeholder="Comment" th:field="${comment.text}">
+      <input type="text" placeholder="Text" th:field="${comment.text}">
     </div>
 
     <!--

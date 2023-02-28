@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -55,6 +56,7 @@ public class TopicController {
 
         Topic topic = new Topic();
         Comment comment = new Comment();
+        topic.setId(comment.getId());
         //List<Comment> comments = commentService.getAllComments();
         //List<Category> categories = categoryService.getAllCategories();
 
@@ -68,9 +70,11 @@ public class TopicController {
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (@ModelAttribute("comment") Comment comment,
-                               @ModelAttribute("topic") Topic topic,
-                               @RequestParam("id") int id
+    public String createTopic (@ModelAttribute("topic") Topic topic,
+                               //@RequestParam("id") int id,
+                               @ModelAttribute ("comment") Comment comment,
+                               @RequestParam String text,
+                               @RequestParam LocalDateTime createdAt
                                //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
                                             ) {
@@ -79,7 +83,7 @@ public class TopicController {
 
         //commentService.createComment((Comment) comments);
 
-        commentService.createComment(comment);
+        commentService.updateCommentById(text, createdAt, comment);
 
         topicService.createTopic(topic);
 
