@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
+import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
@@ -73,11 +74,12 @@ public class CommentController {
 
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute ("comment") Comment comment,
+                                @ModelAttribute ("topic") Topic topic,
                                 @RequestParam String text,
                                 @RequestParam LocalDateTime createdAt
                                 ) {
 
-        commentService.updateCommentById(text, createdAt, comment);
+        commentService.updateCommentById(text, createdAt, comment, topic);
 
         return "redirect:/comments";
 

@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.service;
 
 import com.alpdogan.catharsia.entity.Comment;
+import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,10 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public void updateCommentById(String text, LocalDateTime createdAt, Comment comment) {
+    public void updateCommentById(String text, LocalDateTime createdAt, Comment comment, Topic topic) {
         comment.setText(text);
         //comment.setCreatedAt(createdAt);
+        comment.setTopic(topic);
         commentRepository.save(comment);
     }
 

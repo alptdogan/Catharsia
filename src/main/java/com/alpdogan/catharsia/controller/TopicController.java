@@ -2,6 +2,7 @@ package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.Topic;
+import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.TopicRepository;
 import com.alpdogan.catharsia.service.CommentService;
 import com.alpdogan.catharsia.service.TopicService;
@@ -52,16 +53,23 @@ public class TopicController {
     }
 
     @GetMapping("/newTopic")
-    public String displayTopicForm (Model model) {
+    public String displayTopicForm (Model model
+                                    //@RequestParam("id") int id
+                                    ) {
 
         Topic topic = new Topic();
-        Comment comment = new Comment();
-        topic.getComments().add(comment);
+        Comment firstComment = new Comment();
+        //firstComment = commentService.getCommentById(id);
+
+        firstComment.setTopic(topic);
+
+        //topic.getComments().add(comment);
         //List<Comment> comments = commentService.getAllComments();
         //List<Category> categories = categoryService.getAllCategories();
 
         model.addAttribute("topic", topic);
-        model.addAttribute("comment", comment);
+        model.addAttribute("comment", firstComment);
+
         //model.addAttribute("allComments", comments);
         //model.addAttribute("allCategories", categories);
 
@@ -71,19 +79,19 @@ public class TopicController {
 
     @PostMapping("/addTopic")
     public String createTopic (@ModelAttribute("topic") Topic topic,
-                               //@RequestParam("id") int id,
                                @ModelAttribute ("comment") Comment comment,
+                               //@RequestParam("id") int id,
                                @RequestParam String text,
                                @RequestParam LocalDateTime createdAt
                                //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
                                             ) {
 
+        //Comment firstComment = commentService.getCommentById(id);
 
+        //firstComment.setTopic(topic);
 
-        //commentService.createComment((Comment) comments);
-
-        commentService.updateCommentById(text, createdAt, comment);
+        commentService.updateCommentById(text, createdAt, comment, topic);
 
         topicService.createTopic(topic);
 
