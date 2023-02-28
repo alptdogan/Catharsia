@@ -20,6 +20,8 @@
 
   <form th:action="@{/comments/updateComment}" th:object="${comment}" method="POST">
 
+    <input type="hidden" th:field="${comment.id}"/>
+
     <div class="form-group row">
       <input type="text" placeholder="Text" th:field="${comment.text}">
     </div>
