@@ -90,11 +90,12 @@ public class TopicController {
 
     @PostMapping("/updateTopic")
     public String updateTopic(@ModelAttribute ("topic") Topic topic,
-                              @RequestParam(value = "title") String title //,
+                              @RequestParam("id") int id
+                              //@RequestParam("title") String title //,
                               //@RequestParam List<Long> categories
                                             ) {
 
-        Topic topic1 = topicService.getTopicByTitle(title);
+        Topic topic1 = topicService.getTopicById(id);
 
         topic1.setTitle(topic.getTitle());
 
