@@ -28,6 +28,11 @@
     </tr>
 
     <tr>
+      <th>Username</th>
+      <td th:text="${user.username}">[Username]</td>
+    </tr>
+
+    <tr>
       <th>First Name</th>
       <td th:text="${user.firstName}">[First Name]</td>
     </tr>
@@ -40,33 +45,41 @@
       <th>Email</th>
       <td th:text="${user.email}">[Email]</td>
     </tr>
+
     <!--
-        <tr>
-          <th>Username</th>
-          <td th:text="${user.username}">[Username]</td>
-        </tr>
+     th:field="*{user[__${topic.title}__].topic}"
+     <tr>
+      <th>Topics</th>
+      <td th:text="${user.topic}">[Email]</td>
+    </tr>
 
-
-        -->
-
+            ????????????
     <hr/>
 
+    <tr th:each="topic : ${topic}">
+      <td><a href="#" th:text="${topic.title}">Title ...</a></td>
+
+    </tr>
+    -->
+
+    <!--
     <table class="table table-bordered table-striped">
 
       <thead>
       <tr>
-        <th>Username</th>
-        <th>Bio</th>
+        <th>Topics</th>
+        <th>Comments</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="user: ${user}">
-        <td th:text="${user.username}" />
-        <td th:text="${user.bio}" />
+        <td th:text="${user.topics}" />
+        <td th:text="${user.comments}" />
       </tr>
       </tbody>
 
     </table>
+    -->
 
     <tr>
       <a th:href="@{/users/update(id=${user.id})}"

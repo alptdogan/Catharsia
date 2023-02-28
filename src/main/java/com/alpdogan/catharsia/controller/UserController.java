@@ -44,8 +44,12 @@ public class UserController {
     public String displayUserDetails(@RequestParam("id") int id, Model model) {
 
         User user = userService.getUserById(id);
-        model.addAttribute("user", user);
+        List<Topic> topics = topicService.getAllTopics();
+        List<Comment> comments = commentService.getAllComments();
 
+        model.addAttribute("user", user);
+        model.addAttribute("allTopics", topics);
+        model.addAttribute("allComments", comments);
         return "user-details";
 
     }
