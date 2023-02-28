@@ -69,7 +69,8 @@ public class TopicController {
 
     @PostMapping("/addTopic")
     public String createTopic (@ModelAttribute("comment") Comment comment,
-                               @ModelAttribute("topic") Topic topic
+                               @ModelAttribute("topic") Topic topic,
+                               @RequestParam("id") int id
                                //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
                                             ) {

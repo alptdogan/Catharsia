@@ -20,6 +20,8 @@
 
   <form th:action="@{/topics/addTopic}" th:object="${topic}" method="POST">
 
+    <input type="hidden" th:field="${topic.id}"/>
+
     <div class="form-group row">
       <input type="text" placeholder="Title" th:field="${topic.title}">
     </div>
