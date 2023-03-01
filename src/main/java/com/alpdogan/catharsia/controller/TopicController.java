@@ -58,17 +58,17 @@ public class TopicController {
                                     ) {
 
         Topic topic = new Topic();
-        Comment firstComment = new Comment();
+        //Comment firstComment = new Comment();
         //firstComment = commentService.getCommentById(id);
 
-        firstComment.setTopic(topic);
+        //firstComment.setTopic(topic);
 
         //topic.getComments().add(comment);
         //List<Comment> comments = commentService.getAllComments();
         //List<Category> categories = categoryService.getAllCategories();
 
         model.addAttribute("topic", topic);
-        model.addAttribute("comment", firstComment);
+        //model.addAttribute("comment", firstComment);
 
         //model.addAttribute("allComments", comments);
         //model.addAttribute("allCategories", categories);
