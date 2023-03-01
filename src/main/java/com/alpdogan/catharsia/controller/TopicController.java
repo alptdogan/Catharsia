@@ -78,11 +78,11 @@ public class TopicController {
     }
 
     @PostMapping("/addTopic")
-    public String createTopic (@ModelAttribute("topic") Topic topic,
-                               @ModelAttribute ("comment") Comment comment,
+    public String createTopic (@ModelAttribute("topic") Topic topic
+                               //@ModelAttribute ("comment") Comment comment,
                                //@RequestParam("id") int id,
-                               @RequestParam String text,
-                               @RequestParam LocalDateTime createdAt
+                               //@RequestParam String text,
+                               //@RequestParam LocalDateTime createdAt
                                //@RequestParam List<Comment> comments
                                     //@RequestParam Category category
                                             ) {
@@ -91,7 +91,16 @@ public class TopicController {
 
         //firstComment.setTopic(topic);
 
-        commentService.updateCommentById(text, createdAt, comment, topic);
+        //commentService.updateCommentById(text, createdAt, comment, topic);
+
+        topicService.createTopic(topic);
+
+        return "redirect:/topics";
+
+    }
+
+    @PostMapping("/addCommentToTopic")
+    public String addCommentToTopic (@ModelAttribute("topic") Topic topic) {
 
         topicService.createTopic(topic);
 
