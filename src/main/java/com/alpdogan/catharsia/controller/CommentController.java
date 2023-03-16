@@ -1,10 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
-import com.alpdogan.catharsia.entity.Topic;
-import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.CommentService;
-import com.alpdogan.catharsia.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,12 +71,11 @@ public class CommentController {
 
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute ("comment") Comment comment,
-                                @ModelAttribute ("topic") Topic topic,
                                 @RequestParam String text,
                                 @RequestParam LocalDateTime createdAt
                                 ) {
 
-        commentService.updateCommentById(text, createdAt, comment, topic);
+        commentService.updateCommentById(text, createdAt, comment);
 
         return "redirect:/comments";
 

@@ -1,11 +1,9 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.entity.Comment;
-import com.alpdogan.catharsia.entity.Topic;
 import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.RoleRepository;
 import com.alpdogan.catharsia.service.CommentService;
-import com.alpdogan.catharsia.service.TopicService;
 import com.alpdogan.catharsia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,15 +19,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    TopicService topicService;
-
-    @Autowired
-    CommentService commentService;
-
-    @Autowired
-    RoleRepository roleRepository;
-
     @GetMapping
     public String displayUsers (Model model) {
 
@@ -44,11 +33,9 @@ public class UserController {
     public String displayUserDetails(@RequestParam("id") int id, Model model) {
 
         User user = userService.getUserById(id);
-        List<Topic> topics = topicService.getAllTopics();
         List<Comment> comments = commentService.getAllComments();
 
         model.addAttribute("user", user);
-        model.addAttribute("allTopics", topics);
         model.addAttribute("allComments", comments);
         return "user-details";
 

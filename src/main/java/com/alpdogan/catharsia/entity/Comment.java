@@ -40,12 +40,4 @@ public class Comment {
     })
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
-    private Topic topic;
-
 }

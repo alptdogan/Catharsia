@@ -53,27 +53,11 @@ public class User {
     @Column(name = "bio")
     private String bio;
 
-    /*
-    @Column(name = "followers")
-    private String[] followers;
-
-    @Column(name = "following")
-    private String[] following;
-     */
-
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
-    private List<Topic> topics = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
