@@ -1,4 +1,4 @@
-package com.alpdogan.catharsia.payload.request;
+package com.alpdogan.catharsia.dto.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

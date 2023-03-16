@@ -1,4 +1,4 @@
-package com.alpdogan.catharsia.payload.response;
+package com.alpdogan.catharsia.dto.response;
 
 public class MessageResponse {
 

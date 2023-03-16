@@ -1,12 +1,17 @@
 package com.alpdogan.catharsia.service;
 
+import com.alpdogan.catharsia.dto.request.UpdateUserBioRequestDto;
+import com.alpdogan.catharsia.dto.response.UserResponseDto;
 import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -15,22 +20,39 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @Autowired
+    ModelMapper modelMapper;
+
+    public List<UserResponseDto> getAllUsers() {
+
+        Iterable<User> users = userRepository.findAll();
+
+        List<UserResponseDto> userResponseDtos = new ArrayList<>();
+
+        for (User user : users) {
+            UserResponseDto userResponseDto = modelMapper.map(user, UserResponseDto.class);
+            userResponseDtos.add(userResponseDto);
+        }
+        return userResponseDtos;
     }
 
     public User getUserById(int id) {
         return userRepository.findUserById(id);
     }
 
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    public String updateUserBio(UpdateUserBioRequestDto updateUserBioRequestDto) {
 
-    public void updateUser(User user) {
-        //user.setBio(user.getBio());
-        //user.setEmail(email);
+        int idUserRequest = updateUserBioRequestDto.getId();
+        String bioUserRequest = updateUserBioRequestDto.getBio();
+
+        Optional<User> userOptional = userRepository.findById(idUserRequest);
+        User user = userOptional.get();
+
+        user.setBio(bioUserRequest);
+
         userRepository.save(user);
+
+        return "Changes Saved Successfully.";
     }
 
     public void deleteUserById(int id) {
