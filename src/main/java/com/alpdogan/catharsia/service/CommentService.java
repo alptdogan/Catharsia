@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.service;
 
 import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
+import com.alpdogan.catharsia.dto.response.CommentResponseDto;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.CommentRepository;
@@ -60,5 +61,25 @@ public class CommentService {
         return comment.getText() + " Has Been Successfully Created.";
 
     }
+
+    public List<CommentResponseDto> findAllComments() {
+
+        Iterable<Comment> comments = commentRepository.findAll();
+
+        List<CommentResponseDto> commentResponseDtos = new ArrayList<>();
+
+        for (Comment comment : comments) {
+
+            CommentResponseDto commentResponseDto = modelMapper.map(comment, CommentResponseDto.class);
+
+            commentResponseDtos.add(commentResponseDto);
+
+        }
+
+        return commentResponseDtos;
+
+    }
+
+
 
 }

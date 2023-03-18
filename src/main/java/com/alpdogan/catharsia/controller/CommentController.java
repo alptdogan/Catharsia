@@ -1,14 +1,14 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
+import com.alpdogan.catharsia.dto.response.CommentResponseDto;
 import com.alpdogan.catharsia.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/comment")
@@ -23,6 +23,15 @@ public class CommentController {
         String commentSaveDescription = commentService.saveComment(saveCommentRequestDto);
 
         return new ResponseEntity<>(commentSaveDescription, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/findAllComments")
+    public ResponseEntity<List<CommentResponseDto>> findAllComments() {
+
+        List<CommentResponseDto> commentResponseDtos = commentService.findAllComments();
+
+        return new ResponseEntity<>(commentResponseDtos, HttpStatus.OK);
 
     }
 
