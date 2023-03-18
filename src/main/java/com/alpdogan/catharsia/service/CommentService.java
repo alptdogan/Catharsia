@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.service;
 
 import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
+import com.alpdogan.catharsia.dto.request.UpdateCommentRequestDto;
 import com.alpdogan.catharsia.dto.response.CommentResponseDto;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.entity.User;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -83,6 +85,29 @@ public class CommentService {
     public Comment findComment (Integer commentId) {
 
         return commentRepository.findById(commentId).get();
+
+    }
+
+    public String updateComment (UpdateCommentRequestDto updateCommentRequestDto) {
+
+        int idCommentRequest = updateCommentRequestDto.getId();
+        String textRequest = updateCommentRequestDto.getText();
+        LocalDate createdAtRequest = updateCommentRequestDto.getCreatedAt();
+        int userIdRequest = updateCommentRequestDto.getUserId();
+
+        //Category category = categoryService.findCategory(categoryIdRequest);
+        User user = userRepository.findById(userIdRequest).get();
+
+        Optional<Comment> commentOptional = commentRepository.findById(idCommentRequest);
+        Comment comment = commentOptional.get();
+
+        comment.setText(textRequest);
+        comment.setCreatedAt(createdAtRequest);
+        comment.setUser(user);
+
+        commentRepository.save(comment);
+
+        return "Changes Saved Successfully.";
 
     }
 

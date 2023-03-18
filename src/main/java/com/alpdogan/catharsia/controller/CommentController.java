@@ -1,6 +1,7 @@
 package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
+import com.alpdogan.catharsia.dto.request.UpdateCommentRequestDto;
 import com.alpdogan.catharsia.dto.response.CommentResponseDto;
 import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.service.CommentService;
@@ -42,6 +43,15 @@ public class CommentController {
         Comment comment = commentService.findComment(commentId);
 
         return new ResponseEntity<>(comment, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/updateComment")
+    public ResponseEntity<String> updateComment (@RequestBody UpdateCommentRequestDto updateCommentRequestDto) {
+
+        String updateCommentDescription = commentService.updateComment(updateCommentRequestDto);
+
+        return new ResponseEntity<>(updateCommentDescription, HttpStatus.OK);
 
     }
 
