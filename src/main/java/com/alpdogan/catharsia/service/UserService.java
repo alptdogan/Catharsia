@@ -61,7 +61,7 @@ public class UserService {
         User user = userOptional.get();
         userRepository.delete(user);
 
-        return "The User Deleted.";
+        return "User Has Been Deleted.";
     }
 
 }
