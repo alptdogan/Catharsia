@@ -80,6 +80,10 @@ public class CommentService {
 
     }
 
+    public Comment findComment (Integer commentId) {
 
+        return commentRepository.findById(commentId).get();
+
+    }
 
 }

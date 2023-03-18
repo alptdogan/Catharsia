@@ -2,6 +2,7 @@ package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
 import com.alpdogan.catharsia.dto.response.CommentResponseDto;
+import com.alpdogan.catharsia.entity.Comment;
 import com.alpdogan.catharsia.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,15 @@ public class CommentController {
         List<CommentResponseDto> commentResponseDtos = commentService.findAllComments();
 
         return new ResponseEntity<>(commentResponseDtos, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/findCommentById")
+    public ResponseEntity<Comment> findCommentById (@RequestParam Integer commentId) {
+
+        Comment comment = commentService.findComment(commentId);
+
+        return new ResponseEntity<>(comment, HttpStatus.OK);
 
     }
 
