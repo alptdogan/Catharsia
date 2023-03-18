@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class Comment {
     private String text;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDate createdAt;
 
     /*
     @Column(name = "likes")
@@ -38,6 +38,7 @@ public class Comment {
             CascadeType.DETACH,
             CascadeType.REFRESH
     })
+    @JoinColumn
     private User user;
 
 }

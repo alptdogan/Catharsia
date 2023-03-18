@@ -1,12 +1,18 @@
 package com.alpdogan.catharsia.service;
 
+import com.alpdogan.catharsia.dto.request.SaveCommentRequestDto;
 import com.alpdogan.catharsia.entity.Comment;
+import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.repository.CommentRepository;
+import com.alpdogan.catharsia.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,30 +23,42 @@ public class CommentService {
     @Autowired
     CommentRepository commentRepository;
 
-    public List<Comment> getAllComments() {
-        return commentRepository.findAll();
-    }
+    @Autowired
+    ModelMapper modelMapper;
 
-    public Comment getCommentById(int id) {
-        return commentRepository.findCommentById(id);
-    }
+    @Autowired
+    UserRepository userRepository;
 
-    public void createComment(Comment comment) {
+    @Autowired
+    UserService userService;
+
+    public String saveComment (SaveCommentRequestDto saveCommentRequestDto) {
+
+        String textRequest = saveCommentRequestDto.getText();
+        LocalDate createdAtRequest = saveCommentRequestDto.getCreatedAt();
+        int userIdRequest = saveCommentRequestDto.getUserId();
+        //int categoryIdRequest = saveCommentRequestDto.getCategoryId();
+
+        //Category category = categoryService.findCategory(categoryIdRequest);
+        User user = userRepository.findById(userIdRequest).get();
+
+        Comment comment = new Comment();
+
+        comment.setText(textRequest);
+        comment.setCreatedAt(createdAtRequest);
+        comment.setUser(user);
+        //comment.setCategory(category);
+
+        List<Comment> commentList = new ArrayList<>();
+        commentList.add(comment);
+        //category.setComments(commentList);
+
+        user.setComments(commentList);
+
         commentRepository.save(comment);
-    }
 
-    public void updateCommentById(String text, LocalDateTime createdAt, Comment comment) {
-        comment.setText(text);
-        //comment.setCreatedAt(createdAt);
-        //comment.setTopic(topic);
-        commentRepository.save(comment);
-    }
-
-    public void deleteCommentById(int id) {
-
-        commentRepository.delete(commentRepository.findCommentById(id));
+        return comment.getText() + " Has Been Successfully Created.";
 
     }
-
 
 }
