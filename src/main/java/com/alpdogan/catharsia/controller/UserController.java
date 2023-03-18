@@ -2,6 +2,7 @@ package com.alpdogan.catharsia.controller;
 
 import com.alpdogan.catharsia.dto.request.UpdateUserBioRequestDto;
 import com.alpdogan.catharsia.dto.response.UserResponseDto;
+import com.alpdogan.catharsia.entity.User;
 import com.alpdogan.catharsia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("findAllUsers")
-    public ResponseEntity<List<UserResponseDto>> findAllUsers()
-    {
+    @GetMapping("/getUserById")
+    public ResponseEntity<User> getUserById(@RequestParam Integer userId) {
+
+        User user = userService.getUserById(userId);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
+    }
+
+    @GetMapping("getAllUsers")
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+
         List<UserResponseDto> userResponseDtos = userService.getAllUsers();
+
         return new ResponseEntity<>(userResponseDtos, HttpStatus.OK);
+
     }
 
     @PostMapping("/updateUser")
@@ -33,5 +45,13 @@ public class UserController {
 
     }
 
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<String> deleteUserById(@RequestParam Integer userId) {
+
+        String deleteUserDescription = userService.deleteUserById(userId);
+
+        return new ResponseEntity<>(deleteUserDescription, HttpStatus.OK);
+
+    }
 
 }

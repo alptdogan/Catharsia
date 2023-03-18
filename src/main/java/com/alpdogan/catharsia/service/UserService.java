@@ -55,8 +55,13 @@ public class UserService {
         return "Changes Saved Successfully.";
     }
 
-    public void deleteUserById(int id) {
-        userRepository.delete(userRepository.findUserById(id));
+    public String deleteUserById(Integer userId)
+    {
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.get();
+        userRepository.delete(user);
+
+        return "The User Deleted.";
     }
 
 }
