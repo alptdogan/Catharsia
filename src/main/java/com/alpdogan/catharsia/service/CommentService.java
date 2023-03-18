@@ -111,4 +111,14 @@ public class CommentService {
 
     }
 
+    public String deleteCommentById(Integer commentId) {
+
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        Comment comment = optionalComment.get();
+
+        commentRepository.delete(comment);
+
+        return "Comment Deleted.";
+    }
+
 }
